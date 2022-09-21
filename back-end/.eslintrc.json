@@ -15,10 +15,10 @@
         "@typescript-eslint", "prettier"
     ],
     "rules": {
-        "prettier/prettier": "error",
         "no-magic-numbers": "error",
         "no-console": "off",
         "import/extensions": "off",
-        "radix": "off"
+        "radix": "off",
+        "quotes": ["error", "double", { "avoidEscape": true }]
     }
 }
