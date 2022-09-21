@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "",
     "dev": "nodemon src/server.ts"
   },
   "keywords": [],
