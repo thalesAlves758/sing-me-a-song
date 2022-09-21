@@ -5,7 +5,9 @@ import app from "../../src/app";
 import { prisma } from "../../src/database";
 
 beforeEach(async () => {
-  await prisma.$executeRaw`TRUNCATE TABLE "recommendations"`;
+  await prisma.$transaction([
+    prisma.$executeRaw`TRUNCATE TABLE "recommendations" RESTART IDENTITY`,
+  ]);
 });
 
 describe("### POST /recommendations ###", () => {
