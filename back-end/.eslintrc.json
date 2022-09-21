@@ -19,6 +19,7 @@
         "no-console": "off",
         "import/extensions": "off",
         "radix": "off",
-        "quotes": ["error", "double", { "avoidEscape": true }]
+        "quotes": ["error", "double", { "avoidEscape": true }],
+        "no-useless-escape": "off"
     }
 }
