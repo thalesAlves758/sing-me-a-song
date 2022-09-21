@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "",
+    "test": "dotenv -e .env.test -- npx prisma migrate dev && jest -i --no-cache",
     "dev": "nodemon src/server.ts"
   },
   "keywords": [],
