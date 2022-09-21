@@ -22,17 +22,18 @@ describe("### POST /recommendations/:id/upvote ###", () => {
   it("should return 200 status code", async () => {
     const createdRecommendation = await insertRecommendation();
 
-    const [{ status }, recommendation] = await Promise.all([
-      request(app)
-        .post(`/recommendations/${createdRecommendation.id}/upvote`)
-        .send(),
-      prisma.recommendation.findUnique({
-        where: { id: createdRecommendation.id },
-      }),
-    ]);
-
     expect(createdRecommendation.score).toEqual(0);
+
+    const { status } = await request(app)
+      .post(`/recommendations/${createdRecommendation.id}/upvote`)
+      .send();
+
     expect(status).toEqual(200);
+
+    const recommendation = await prisma.recommendation.findUnique({
+      where: { id: createdRecommendation.id },
+    });
+
     expect(recommendation.score).toEqual(1);
   });
 });
