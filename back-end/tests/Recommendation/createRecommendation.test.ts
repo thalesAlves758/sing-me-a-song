@@ -3,6 +3,7 @@ import request from "supertest";
 import { faker } from "@faker-js/faker";
 import app from "../../src/app";
 import { prisma } from "../../src/database";
+import { insertRecommendation } from "../utils/recommendations.utils";
 
 beforeEach(async () => {
   await prisma.$transaction([
@@ -31,6 +32,18 @@ describe("### POST /recommendations ###", () => {
     const { status } = await request(app).post("/recommendations").send(body);
 
     expect(status).toEqual(422);
+  });
+
+  it("should return 409 status code and an error message when try create a recommendation that already exists", async () => {
+    const created = await insertRecommendation();
+
+    const { status, text } = await request(app).post("/recommendations").send({
+      name: created.name,
+      youtubeLink: "https://youtu.be/UNdQsRCFJjA",
+    });
+
+    expect(status).toEqual(409);
+    expect(text).toEqual("Recommendations names must be unique");
   });
 
   it("should return 201 status code when send a valid body to create a recommendation", async () => {
