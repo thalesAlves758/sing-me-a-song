@@ -12,3 +12,16 @@ export async function insertRecommendation(recommendation?: {
 
   return prisma.recommendation.create({ data: insertRecommendation });
 }
+
+export async function insertManyRecommendations(amount: number = 10) {
+  const recommendations = [...Array(amount)].map((_) => {
+    return {
+      name: faker.music.songName(),
+      youtubeLink: faker.internet.url(),
+    };
+  });
+
+  return prisma.recommendation.createMany({
+    data: recommendations,
+  });
+}
