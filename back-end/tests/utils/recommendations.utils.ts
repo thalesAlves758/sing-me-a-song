@@ -13,11 +13,21 @@ export async function insertRecommendation(recommendation?: {
   return prisma.recommendation.create({ data: insertRecommendation });
 }
 
-export async function insertManyRecommendations(amount: number = 10) {
+function getRandomScore() {
+  const randomDigitsAmount = Math.random() * 4;
+
+  return Number(faker.random.numeric(randomDigitsAmount));
+}
+
+export async function insertManyRecommendations(
+  amount: number = 10,
+  randomScore: boolean = false
+) {
   const recommendations = [...Array(amount)].map((_) => {
     return {
       name: faker.music.songName(),
       youtubeLink: faker.internet.url(),
+      score: randomScore ? getRandomScore() : 0,
     };
   });
 
