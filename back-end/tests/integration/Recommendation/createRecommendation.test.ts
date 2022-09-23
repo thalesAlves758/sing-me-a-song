@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import request from "supertest";
 import { faker } from "@faker-js/faker";
-import app from "../../src/app";
-import { prisma } from "../../src/database";
-import { insertRecommendation } from "../utils/recommendations.utils";
+import app from "../../../src/app";
+import { prisma } from "../../../src/database";
+import { insertRecommendation } from "../../utils/recommendations.utils";
 
 beforeEach(async () => {
   await prisma.$transaction([
