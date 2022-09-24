@@ -34,7 +34,7 @@ describe("insert", () => {
 
     jest
       .spyOn(recommendationRepository, "create")
-      .mockImplementation((): any => {});
+      .mockImplementationOnce((): any => {});
 
     await recommendationService.insert({ name, youtubeLink });
 
