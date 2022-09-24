@@ -35,3 +35,12 @@ export async function insertManyRecommendations(
     data: recommendations,
   });
 }
+
+export function getMockRecommendation() {
+  return {
+    id: Number(faker.random.numeric()),
+    name: faker.music.songName(),
+    youtubeLink: faker.internet.url(),
+    score: 0,
+  };
+}
