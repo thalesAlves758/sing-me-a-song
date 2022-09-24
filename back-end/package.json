@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test:integration": "dotenv -e .env.test -- npx prisma migrate dev && jest -i --no-cache --testPathPattern=tests/integration",
     "test": "dotenv -e .env.test -- npx prisma migrate dev && jest -i --no-cache",
     "dev": "nodemon src/server.ts"
   },
