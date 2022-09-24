@@ -33,6 +33,7 @@ export async function insertManyRecommendations(
 
   return prisma.recommendation.createMany({
     data: recommendations,
+    skipDuplicates: true,
   });
 }
 
