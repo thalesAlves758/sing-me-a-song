@@ -2,6 +2,8 @@ import { faker } from "@faker-js/faker";
 
 describe("create recommendation", () => {
   it("should create a new recommendation", () => {
+    cy.resetDatabase();
+
     const recommendationFake = {
       name: faker.music.songName(),
       youtubeLink: "https://youtu.be/UNdQsRCFJjA",
