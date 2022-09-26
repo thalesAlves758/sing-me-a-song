@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use("/recommendations", recommendationRouter);
 
-if (process.env.NODE_ENV === "development") {
+if (["development", "test"].includes(process.env.NODE_ENV)) {
   app.use(databaseRouter);
 }
 
